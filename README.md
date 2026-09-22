@@ -73,13 +73,7 @@ streamlit
 
 ### Option A: Command Line (Terminal)
 ```bash
-python app.py
-```
-Then type the path to your PDF (e.g., `data/uploads/myfile.pdf`) and start asking questions. Type `exit` to quit.
-
-### Option B: Web Interface (Browser)
-```bash
-streamlit run streamlit_app.py
+ python -m streamlit run streamlit_app.py
 ```
 This opens a web page at `http://localhost:8501`. Upload a PDF, click "Process PDF", then ask questions in the text box.
 
@@ -139,42 +133,3 @@ This opens a web page at `http://localhost:8501`. Upload a PDF, click "Process P
 - "Ask" button shows the answer
 - Uses Streamlit's session state to remember the pipeline
 
----
-
-## Key Concepts (For Your Professor)
-
-| Concept | Simple Explanation |
-|---------|-------------------|
-| **RAG** | Instead of asking the AI to memorize everything, we give it the relevant pages from your PDF when you ask a question. |
-| **Embeddings** | Text turned into numbers so a computer can measure similarity mathematically. |
-| **Vector Store** | A database optimized for finding "closest" vectors (most similar text). |
-| **Retriever** | The component that searches the vector store for relevant chunks. |
-| **LLM** | Large Language Model — the AI that generates the final answer in natural language. |
-| **Chunking** | Breaking long text into pieces so we can search precisely and fit into the AI's context window. |
-
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| "PDF not found" | Check the path; use forward slashes or raw strings on Windows |
-| Ollama connection error | Make sure Ollama is running (`ollama serve`) and models are pulled |
-| Slow first run | First run downloads model weights; subsequent runs are fast |
-| Out of memory | Use smaller models (e.g., `gemma3:4b` instead of `gemma3:12b`) |
-
----
-
-## Customization
-
-Change models in code:
-- **Embedding model**: Edit `src/embeddings.py` → `model="other-model"`
-- **Chat model**: Edit `src/llm.py` → `model="other-model"`
-- **Chunk size**: Edit `src/splitter.py` → `chunk_size=500`
-- **Number of chunks retrieved**: Edit `src/retriever.py` → `k=6`
-
----
-
-## License
-
-Educational / Personal use.
